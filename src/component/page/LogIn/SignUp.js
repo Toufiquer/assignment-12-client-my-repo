@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import img from "../../../assets/images/appointment.png";
+import img from "../../../assets/images/img.png";
 import auth from "../../Share/firebase.init";
 import {
     useCreateUserWithEmailAndPassword,
@@ -8,14 +8,13 @@ import {
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import Loading from "../../Share/Loading";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import useToken from "../../../hooks/useToken";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useToken from "../../hooks/useToken";
 const SignUp = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
     const [pass, SetPass] = useState("");
-    const [conPass, SetConPass] = useState("");
     const [conErr, SetError] = useState(null);
     // Error
     let err;
@@ -25,7 +24,6 @@ const SignUp = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
@@ -38,8 +36,8 @@ const SignUp = () => {
         useCreateUserWithEmailAndPassword(auth);
 
     const [updateProfile, updating, uError] = useUpdateProfile(auth);
-    const [token] = useToken(user || gUser);
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
+    const [token] = useToken(user || gUser);
     // Loading
     if (gLoading || loading || updating) {
         return <Loading />;
@@ -47,8 +45,10 @@ const SignUp = () => {
     // Error
     if (gError || error || uError) {
         err = gError?.message || error?.message || uError?.message;
+        console.log(err);
+        SetError(err);
     }
-    // After Log in
+    // After get the token
     if (token) {
         navigate(from, { replace: true });
     }
@@ -58,19 +58,8 @@ const SignUp = () => {
     const onSubmit = async e => {
         await createUserWithEmailAndPassword(e.email, e.password);
         await updateProfile({ displayName: e.name });
-        // alert("Updated profile");
     };
 
-    // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
-    // const handlePasswordMatch = () => {
-    //     if (pass !== conPass) {
-    //         SetError("Password do not Matched.");
-    //         console.log(pass, conPass, conErr);
-    //         SetConPass("");
-    //     } else {
-    //         SetError("");
-    //     }
-    // };
     return (
         <div className="container mx-auto">
             <div
@@ -143,27 +132,6 @@ const SignUp = () => {
                         {/* --- --- --- */}
                     </>
                     <>
-                        {/* Input Confirm Password */}
-                        {/* <input
-                        type="password"
-                        autoComplete="new-password"
-                        {...register("conPassword", {
-                            required: {
-                                value: true,
-                                message: "Confirm Password is Required.",
-                            },
-                        })}
-                        placeholder="Your Confirm Password"
-                        className="input input-bordered input-accent w-full"
-                        onChange={e => SetConPass(e.target.value)}
-                        onBlur={handlePasswordMatch}
-                        value={conPass || ""}
-                    />
-                    {errors.conPassword?.type === "required" && (
-                        <span className="label-text-alt text-lg text-red-500">
-                            {errors.conPassword.message}{" "}
-                        </span>
-                    )} */}
                         {/* Input Password */}
                         <input
                             type="password"
@@ -225,88 +193,5 @@ const SignUp = () => {
         </div>
     );
 };
-
-// const [password, SetPassword] = useState("");
-// const [conPassword, SetConPassword] = useState("");
-// const [email, SetEmail] = useState("");
-// const [err, SetErr] = useState(null);
-// const handleSubmit = e => {
-//     e.preventDefault();
-//     console.log(e);
-// };
-// const handlePassword = () => {
-//     if (password !== conPassword) {
-//         SetErr("Password do not match");
-//     } else {
-//         SetErr(null);
-//     }
-// };
-// ====================================
-
-// <form
-// onSubmit={handleSubmit}
-// className="flex flex-col w-full lg:w-2/4 mx-auto gap-4"
-// >
-// <input
-//     type="email"
-//     placeholder="Your Email"
-//     name="email"
-//     onChange={e => SetEmail(e.target.value)}
-//     value={email || ""}
-//     className="input input-bordered input-accent w-full"
-// />
-// <input
-//     type="password"
-//     placeholder="Password"
-//     name="password"
-//     onChange={e => SetPassword(e.target.value)}
-//     value={password || ""}
-//     className="input input-bordered input-accent w-full"
-// />
-// {logIn && (
-//     <>
-//         <input
-//             type="password"
-//             placeholder="Confirm Password"
-//             name="confirmPassword"
-//             onChange={e => SetConPassword(e.target.value)}
-//             value={conPassword || ""}
-//             onBlur={handlePassword}
-//             className="input input-bordered input-accent w-full"
-//         />
-//         {err && (
-//             <span className="label-text-alt text-lg text-red-500">
-//                 {err}
-//             </span>
-//         )}
-//     </>
-// )}
-// {logIn ? (
-//     <span className="label-text-alt text-lg">
-//         Already a member?{" "}
-//         <button
-//             onClick={() => SetLogIn(!logIn)}
-//             className="link"
-//         >
-//             Log In
-//         </button>
-//     </span>
-// ) : (
-//     <span className="label-text-alt text-lg">
-//         New to Doctors Portal?{" "}
-//         <button
-//             onClick={() => SetLogIn(!logIn)}
-//             className="link"
-//         >
-//             Create new account
-//         </button>
-//     </span>
-// )}
-// <input
-//     type="submit"
-//     value={logIn ? "Sign Up" : "Login"}
-//     className="btn btn-primary w-full"
-// />
-// </form>
 
 export default SignUp;

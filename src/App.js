@@ -6,21 +6,24 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./component/page/Home/Home";
 import NothingFound from "./component/page/NothingFound/NothingFound";
 import LogIn from "./component/page/LogIn/LogIn";
+import SignUp from "./component/page/LogIn/SignUp";
 function App() {
     const queryClient = new QueryClient();
     return (
-        <div>
-            <QueryClientProvider client={queryClient}>
-                <NavMenu />
-
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    <Route path="/logIn" element={<LogIn />}></Route>
-                    <Route path="*" element={<NothingFound />}></Route>
-                </Routes>
-                <ToastContainer />
-            </QueryClientProvider>
-        </div>
+        <>
+            <NavMenu />
+            <div className="overflow-x-hidden">
+                <QueryClientProvider client={queryClient}>
+                    <Routes>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/logIn" element={<LogIn />}></Route>
+                        <Route path="/signUp" element={<SignUp />}></Route>
+                        <Route path="*" element={<NothingFound />}></Route>
+                    </Routes>
+                    <ToastContainer />
+                </QueryClientProvider>
+            </div>
+        </>
     );
 }
 

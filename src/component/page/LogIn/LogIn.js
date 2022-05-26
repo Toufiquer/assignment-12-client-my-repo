@@ -8,16 +8,13 @@ import {
 import { useForm } from "react-hook-form";
 import Loading from "../../Share/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
 import useToken from "../../hooks/useToken";
 const LogIn = () => {
-    const [uUser, uLoading] = useAuthState(auth);
     // Error
     let err;
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    // console.log(from);
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
 
     // Use Form for design and validate
@@ -35,9 +32,9 @@ const LogIn = () => {
     const [signInWithEmailAndPassword, user, loading, error] =
         useSignInWithEmailAndPassword(auth);
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
-    const [token] = useToken(uUser || user || gUser);
+    const [token] = useToken(user || gUser);
     useEffect(() => {
-        // After Log in
+        // After get the token
         if (token) {
             navigate(from, { replace: true });
         }
@@ -45,7 +42,7 @@ const LogIn = () => {
     }, [token, from, navigate]);
 
     // Loading
-    if (uLoading || gLoading || loading) {
+    if (gLoading || loading) {
         return <Loading />;
     }
     // Error
@@ -55,9 +52,8 @@ const LogIn = () => {
     }
 
     // Handle Submit
-    const onSubmit = e => {
-        signInWithEmailAndPassword(e.email, e.password);
-        // console.log(e.email, e.password);
+    const onSubmit = async e => {
+        await signInWithEmailAndPassword(e.email, e.password);
     };
 
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
@@ -155,88 +151,5 @@ const LogIn = () => {
         </div>
     );
 };
-
-// const [password, SetPassword] = useState("");
-// const [conPassword, SetConPassword] = useState("");
-// const [email, SetEmail] = useState("");
-// const [err, SetErr] = useState(null);
-// const handleSubmit = e => {
-//     e.preventDefault();
-//     console.log(e);
-// };
-// const handlePassword = () => {
-//     if (password !== conPassword) {
-//         SetErr("Password do not match");
-//     } else {
-//         SetErr(null);
-//     }
-// };
-// ====================================
-
-// <form
-// onSubmit={handleSubmit}
-// className="flex flex-col w-full lg:w-2/4 mx-auto gap-4"
-// >
-// <input
-//     type="email"
-//     placeholder="Your Email"
-//     name="email"
-//     onChange={e => SetEmail(e.target.value)}
-//     value={email || ""}
-//     className="input input-bordered input-accent w-full"
-// />
-// <input
-//     type="password"
-//     placeholder="Password"
-//     name="password"
-//     onChange={e => SetPassword(e.target.value)}
-//     value={password || ""}
-//     className="input input-bordered input-accent w-full"
-// />
-// {logIn && (
-//     <>
-//         <input
-//             type="password"
-//             placeholder="Confirm Password"
-//             name="confirmPassword"
-//             onChange={e => SetConPassword(e.target.value)}
-//             value={conPassword || ""}
-//             onBlur={handlePassword}
-//             className="input input-bordered input-accent w-full"
-//         />
-//         {err && (
-//             <span className="label-text-alt text-lg text-red-500">
-//                 {err}
-//             </span>
-//         )}
-//     </>
-// )}
-// {logIn ? (
-//     <span className="label-text-alt text-lg">
-//         Already a member?{" "}
-//         <button
-//             onClick={() => SetLogIn(!logIn)}
-//             className="link"
-//         >
-//             Log In
-//         </button>
-//     </span>
-// ) : (
-//     <span className="label-text-alt text-lg">
-//         New to Doctors Portal?{" "}
-//         <button
-//             onClick={() => SetLogIn(!logIn)}
-//             className="link"
-//         >
-//             Create new account
-//         </button>
-//     </span>
-// )}
-// <input
-//     type="submit"
-//     value={logIn ? "Sign Up" : "Login"}
-//     className="btn btn-primary w-full"
-// />
-// </form>
 
 export default LogIn;

@@ -4,14 +4,14 @@ const useToken = user => {
     const [token, SetToken] = useState("");
     const email = user?.user?.email;
     const name = user?.user?.displayName;
+
     useEffect(() => {
         const newUser = {
             email: email,
             name: name,
         };
-        // console.log(newUser);
         if (email && name) {
-            fetch("https://gentle-lowlands-70395.herokuapp.com/user", {
+            fetch("http://localhost:3500/user", {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json",
@@ -24,7 +24,7 @@ const useToken = user => {
                     localStorage.setItem("access-token", data.token);
                 });
         }
-    }, [user, email, name]);
+    }, [email, name]);
     return [token];
 };
 export default useToken;
