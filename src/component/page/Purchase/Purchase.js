@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import Loading from "../../Share/Loading";
 const Purchase = () => {
+    const [product, SetProduct] = useState({});
+    const [loading, SetLoading] = useState(false);
     const id = useParams();
     console.log(id);
+    useEffect(() => {
+        if (id) {
+            SetLoading(true);
+            fetch(`http://localhost:3500/product?id=${id.id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    // authorization: `Bearer ${localStorage.getItem(
+                    //     "access-token-12"
+                    // )}`,
+                },
+            })
+                .then(res => res.json())
+                .then(data => {
+                    SetProduct(data);
+                });
+            SetLoading(false);
+        }
+    }, [id]);
+    if (loading) {
+        <Loading />;
+    }
     const {
         register,
         handleSubmit,
@@ -24,15 +48,35 @@ const Purchase = () => {
                             />
                             <div className="flex">
                                 <div className="text-left">
-                                    <h1 className="text-5xl font-bold">
-                                        Box Office News!
-                                    </h1>
-                                    <p className="py-6">
-                                        Provident cupiditate voluptatem et in.
-                                        Quaerat fugiat ut assumenda excepturi
-                                        exercitationem quasi. In deleniti eaque
-                                        aut repudiandae et a id nisi.
-                                    </p>
+                                    <>
+                                        <div className="card-body text-center">
+                                            <h2 className="text-xl">
+                                                {product.productName}
+                                            </h2>
+                                            <div className="text-left">
+                                                <div className="border p-2 w-full">
+                                                    Supplier Name:{" "}
+                                                    {product.name}
+                                                </div>
+                                                <div className="border p-2 w-full">
+                                                    description:{" "}
+                                                    {product.productDescription}
+                                                </div>
+                                                <div className="border p-2 w-full">
+                                                    minimum order quantity:{" "}
+                                                    {product.minimumQuantity}
+                                                </div>
+                                                <div className="border p-2 w-full">
+                                                    available quantity:{" "}
+                                                    {product.availableQuantity}
+                                                </div>
+                                                <div className="border p-2 w-full">
+                                                    price (per unit price):{" "}
+                                                    {product.price}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +91,7 @@ const Purchase = () => {
                         <label className="label">
                             <span className="label-text">Quantity:</span>
                             <span className="label-text-alt">
-                                Min Quantity : {" 500"}
+                                Min Quantity : {product.minimumQuantity}
                             </span>
                         </label>
                         <input

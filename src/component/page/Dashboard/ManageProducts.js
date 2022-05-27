@@ -20,7 +20,12 @@ const ManageProducts = () => {
     if (data) {
         fetch("http://localhost:3500/updateProduct", {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${localStorage.getItem(
+                    "access-token-12"
+                )}`,
+            },
             body: JSON.stringify(data),
         })
             .then(res => res.json())
