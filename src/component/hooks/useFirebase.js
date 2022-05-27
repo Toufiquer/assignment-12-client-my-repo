@@ -3,7 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import auth from "../Share/firebase.init";
 
 const useFireBase = () => {
-    const [user, SetUser] = useState();
+    const [user, SetUser] = useState({});
     useEffect(() => {
         onAuthStateChanged(auth, user => {
             SetUser(user);
