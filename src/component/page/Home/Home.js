@@ -6,6 +6,7 @@ import CardsContainer from "./CardsContainer";
 import Hero from "./Hero";
 import OurVision from "./OurVision";
 import Review from "./Review";
+import WeAreBest from "./WeAreBest";
 const Home = () => {
     return (
         <div className="">
@@ -13,8 +14,9 @@ const Home = () => {
                 <Hero img={img} />
                 <CardsContainer img={img} />
                 <BusinessSummary />
-                <Review />
                 <OurVision />
+                <WeAreBest />
+                <Review />
             </div>
             <Footer img={img} />
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Card = ({ img }) => {
+const Card = ({ img, _id }) => {
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -23,9 +24,12 @@ const Card = ({ img }) => {
                         </div>
                     </div>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary mx-auto">
+                        <Link
+                            to={`purchase/${_id || "454545"}`}
+                            className="btn btn-primary mx-auto"
+                        >
                             Order Now
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
