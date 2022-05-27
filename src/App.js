@@ -17,6 +17,7 @@ import ManageAllOrders from "./component/page/Dashboard/ManageAllOrders";
 import AddAProducts from "./component/page/Dashboard/AddAProducts";
 import ManageProducts from "./component/page/Dashboard/ManageProducts";
 import AllUsers from "./component/page/Dashboard/AllUsers";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
     const queryClient = new QueryClient();
     return (

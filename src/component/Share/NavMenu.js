@@ -163,7 +163,7 @@ const NavMenu = () => {
                     </div>
                     <div className="nav-end">
                         <label
-                            for="dashBoard-btn"
+                            htmlFor="dashBoard-btn"
                             tabIndex="1"
                             className="btn btn-ghost drawer-button lg:hidden"
                         >

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import img from "../../../assets/images/img.png";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 const AddAProducts = () => {
     const [conErr, SetError] = useState(null);
     // Error
@@ -19,8 +20,19 @@ const AddAProducts = () => {
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
 
     // Handle Submit
-    const onSubmit = async e => {
-        console.log(e);
+    const onSubmit = async product => {
+        console.log(product);
+        fetch("http://localhost:3500/addProduct", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(product),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast("Add Successfully");
+                }
+            });
     };
     return (
         <>
