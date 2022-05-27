@@ -45,6 +45,7 @@ const LogIn = () => {
     if (gLoading || loading) {
         return <Loading />;
     }
+
     // Error
     if (gError || error) {
         err = gError?.message || error?.message;

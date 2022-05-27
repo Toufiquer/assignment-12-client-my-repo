@@ -4,16 +4,13 @@ import img from "../../../assets/images/bj.jpg";
 const NothingFound = () => {
     return (
         <div
-            style={{ background: `url(${img})` }}
+            style={{ backgroundImage: `url(${img})` }}
             className="
     flex
     items-center
     justify-center
     w-screen
     h-screen
-    bg-gradient-to-r
-    from-indigo-600
-    to-blue-400
   "
         >
             <div
