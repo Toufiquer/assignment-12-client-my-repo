@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 const Purchase = () => {
+    const id = useParams();
+    console.log(id);
     const {
         register,
         handleSubmit,

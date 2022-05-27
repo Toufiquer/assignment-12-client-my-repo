@@ -4,11 +4,14 @@ import Loading from "../../Share/Loading";
 import Card from "./Card";
 
 const CardsContainer = ({ img }) => {
-    const [allProducts, isLoading] = useProducts();
-    const loadProduct = [...allProducts];
-    loadProduct.length = 6;
+    const [allProducts, isLoading, refetch] = useProducts();
     if (isLoading) {
         return <Loading />;
+    }
+    let loadProduct;
+    if (allProducts) {
+        loadProduct = [...allProducts];
+        loadProduct.length = 6;
     }
     return (
         <>
