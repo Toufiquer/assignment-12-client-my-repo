@@ -21,7 +21,6 @@ const AddAProducts = () => {
 
     // Handle Submit
     const onSubmit = async product => {
-        console.log(product);
         fetch("http://localhost:3500/addProduct", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -38,17 +37,20 @@ const AddAProducts = () => {
         <>
             <div
                 style={{ backgroundImage: `url(${img})` }}
-                className="h-screen pt-16"
+                className="min-h-screen py-16"
             >
                 <div className="container">
                     <div className="text-center text-xl my-4">
                         Add A New Product
                     </div>
                     <form
-                        className="flex flex-col w-full lg:w-2/4 mx-auto gap-4"
+                        className="flex flex-col w-full lg:w-2/4 mx-auto gap-1"
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         {/* Input Person Name */}
+                        <label className="label">
+                            <span className="label-text">Name:</span>
+                        </label>
                         <input
                             type="text"
                             autoComplete="name"
@@ -78,6 +80,9 @@ const AddAProducts = () => {
                         {/* --- --- --- */}
                         <>
                             {/* Input Person Email */}
+                            <label className="label">
+                                <span className="label-text">Email:</span>
+                            </label>
                             <input
                                 type="email"
                                 autoComplete="email"
@@ -108,6 +113,11 @@ const AddAProducts = () => {
                         </>
                         <>
                             {/* Input Product name */}
+                            <label className="label">
+                                <span className="label-text">
+                                    Product Name:
+                                </span>
+                            </label>
                             <input
                                 type="text"
                                 autoComplete="Product Name"
@@ -127,6 +137,11 @@ const AddAProducts = () => {
                             )}
                             {/* --- --- --- */}
                             {/* Input Minimum Quantity */}
+                            <label className="label">
+                                <span className="label-text">
+                                    Minimum Quantity :
+                                </span>
+                            </label>
                             <input
                                 type="number"
                                 autoComplete="Minimum Quantity"
@@ -147,6 +162,11 @@ const AddAProducts = () => {
                             )}
                             {/* --- --- --- */}
                             {/* Input Available Quantity */}
+                            <label className="label">
+                                <span className="label-text">
+                                    Available Quantity:
+                                </span>
+                            </label>
                             <input
                                 type="number"
                                 autoComplete="Available Quantity"
@@ -166,7 +186,12 @@ const AddAProducts = () => {
                                 </span>
                             )}
                             {/* --- --- --- */}
-                            {/* Input Available Quantity */}
+                            {/* Input Price Per Unit */}
+                            <label className="label">
+                                <span className="label-text">
+                                    Price Per Unit:
+                                </span>
+                            </label>
                             <input
                                 type="number"
                                 autoComplete="Price Per Unit"
@@ -186,6 +211,11 @@ const AddAProducts = () => {
                             )}
                             {/* --- --- --- */}
                             {/* Input Product Description */}
+                            <label className="label">
+                                <span className="label-text">
+                                    Product Description:
+                                </span>
+                            </label>
                             <textarea
                                 type="text"
                                 autoComplete="Product Description"
