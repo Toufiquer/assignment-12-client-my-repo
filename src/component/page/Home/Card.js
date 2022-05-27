@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ img, _id }) => {
+const Card = ({ p, img }) => {
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -9,23 +9,27 @@ const Card = ({ img, _id }) => {
                     <img src={img} alt="Shoes" />
                 </figure>
                 <div className="card-body text-center">
-                    <h2 className="text-xl">Shoes!</h2>
+                    <h2 className="text-xl">{p.productName}</h2>
                     <div className="text-left">
-                        <div className="border p-2 w-full">Name: </div>
-                        <div className="border p-2 w-full">description: </div>
                         <div className="border p-2 w-full">
-                            minimum order quantity:{" "}
+                            Supplier Name: {p.name}
                         </div>
                         <div className="border p-2 w-full">
-                            available quantity:{" "}
+                            description: {p.productDescription}
                         </div>
                         <div className="border p-2 w-full">
-                            price (per unit price):{" "}
+                            minimum order quantity: {p.minimumQuantity}
+                        </div>
+                        <div className="border p-2 w-full">
+                            available quantity: {p.availableQuantity}
+                        </div>
+                        <div className="border p-2 w-full">
+                            price (per unit price): {p.price}
                         </div>
                     </div>
                     <div className="card-actions justify-end">
                         <Link
-                            to={`purchase/${_id || "454545"}`}
+                            to={`purchase/${p._id || "454545"}`}
                             className="btn btn-primary mx-auto"
                         >
                             Order Now

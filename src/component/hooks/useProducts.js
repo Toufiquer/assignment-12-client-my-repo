@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-
 const useProducts = () => {
     const [allProducts, SetAllProducts] = useState([]);
 
