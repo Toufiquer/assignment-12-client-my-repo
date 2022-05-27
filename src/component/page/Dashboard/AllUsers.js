@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyOrders = () => {
+const AllUsers = () => {
     const allUsers = [
         { name: "Name", email: "email" },
         { name: "Name", email: "email" },
@@ -68,4 +68,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default AllUsers;

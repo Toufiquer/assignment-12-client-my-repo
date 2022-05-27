@@ -13,6 +13,10 @@ import Dashboard from "./component/page/Dashboard/Dashboard";
 import MyOrders from "./component/page/Dashboard/MyOrders";
 import MyReview from "./component/page/Dashboard/MyReview";
 import MyProfiles from "./component/page/Dashboard/MyProfiles";
+import ManageAllOrders from "./component/page/Dashboard/ManageAllOrders";
+import AddAProducts from "./component/page/Dashboard/AddAProducts";
+import ManageProducts from "./component/page/Dashboard/ManageProducts";
+import AllUsers from "./component/page/Dashboard/AllUsers";
 function App() {
     const queryClient = new QueryClient();
     return (
@@ -51,6 +55,23 @@ function App() {
                             <Route
                                 path="myProfiles"
                                 element={<MyProfiles></MyProfiles>}
+                            ></Route>
+                            {/* For Admin */}
+                            <Route
+                                path="manageAllOrders"
+                                element={<ManageAllOrders></ManageAllOrders>}
+                            ></Route>
+                            <Route
+                                path="addAProducts"
+                                element={<AddAProducts></AddAProducts>}
+                            ></Route>
+                            <Route
+                                path="manageProducts"
+                                element={<ManageProducts></ManageProducts>}
+                            ></Route>
+                            <Route
+                                path="allUsers"
+                                element={<AllUsers></AllUsers>}
                             ></Route>
                         </Route>
                         <Route path="*" element={<NothingFound />}></Route>
