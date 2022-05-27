@@ -12,19 +12,19 @@ const Purchase = () => {
         <div className="my-16 container mx-auto">
             <div>
                 <div className="m-2">
-                    <div class="hero bg-base-200">
-                        <div class="hero-content flex-col lg:flex-row">
+                    <div className="hero bg-base-200">
+                        <div className="hero-content flex-col lg:flex-row">
                             <img
                                 src="https://api.lorem.space/image/movie?w=260&h=400"
-                                class="max-w-sm rounded-lg shadow-2xl"
+                                className="max-w-sm rounded-lg shadow-2xl"
                                 alt="Name"
                             />
                             <div className="flex">
                                 <div className="text-left">
-                                    <h1 class="text-5xl font-bold">
+                                    <h1 className="text-5xl font-bold">
                                         Box Office News!
                                     </h1>
-                                    <p class="py-6">
+                                    <p className="py-6">
                                         Provident cupiditate voluptatem et in.
                                         Quaerat fugiat ut assumenda excepturi
                                         exercitationem quasi. In deleniti eaque
@@ -41,8 +41,11 @@ const Purchase = () => {
                     </div>
                     <form className="" onSubmit={handleSubmit(onSubmit)}>
                         {/* Input Quantity */}
-                        <label class="label">
-                            <span class="label-text">Quantity:</span>
+                        <label className="label">
+                            <span className="label-text">Quantity:</span>
+                            <span className="label-text-alt">
+                                Min Quantity : {" 500"}
+                            </span>
                         </label>
                         <input
                             type="number"
@@ -64,8 +67,8 @@ const Purchase = () => {
                         {/* --- --- --- */}
 
                         {/* Input name */}
-                        <label class="label">
-                            <span class="label-text">Name:</span>
+                        <label className="label">
+                            <span className="label-text">Name:</span>
                         </label>
                         <input
                             type="name"
@@ -87,8 +90,8 @@ const Purchase = () => {
                         {/* --- --- --- */}
 
                         {/* Input Email */}
-                        <label class="label">
-                            <span class="label-text">Email:</span>
+                        <label className="label">
+                            <span className="label-text">Email:</span>
                         </label>
                         <input
                             type="email"
@@ -119,8 +122,8 @@ const Purchase = () => {
                         {/* --- --- --- */}
 
                         {/* Input Address */}
-                        <label class="label">
-                            <span class="label-text">Address:</span>
+                        <label className="label">
+                            <span className="label-text">Address:</span>
                         </label>
                         <input
                             type="address"
@@ -141,8 +144,8 @@ const Purchase = () => {
                         )}
                         {/* --- --- --- */}
                         {/* Input Number */}
-                        <label class="label">
-                            <span class="label-text">Mobile Number:</span>
+                        <label className="label">
+                            <span className="label-text">Mobile Number:</span>
                         </label>
                         <input
                             type="text"
@@ -167,8 +170,8 @@ const Purchase = () => {
                         )}
                         {/* --- --- --- */}
                         {/* Input message */}
-                        <label class="label">
-                            <span class="label-text">Message:</span>
+                        <label className="label">
+                            <span className="label-text">Message:</span>
                         </label>
                         <textarea
                             type="message"
