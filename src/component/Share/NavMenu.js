@@ -72,7 +72,7 @@ const NavMenu = () => {
                                     <Link to="/about">About</Link>
                                 </li>
                                 <li>
-                                    <Link to="/appointment">Appointment</Link>
+                                    <Link to="/purchase">Purchase </Link>
                                 </li>
                                 <li>
                                     <Link to="/reviews">Reviews</Link>
@@ -137,7 +137,7 @@ const NavMenu = () => {
                                 <Link to="/about">About</Link>
                             </li>
                             <li>
-                                <Link to="/appointment">Appointment</Link>
+                                <Link to="/purchase">Purchase </Link>
                             </li>
                             <li>
                                 <Link to="/reviews">Reviews</Link>

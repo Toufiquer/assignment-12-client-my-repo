@@ -8,6 +8,7 @@ import NothingFound from "./component/page/NothingFound/NothingFound";
 import LogIn from "./component/page/LogIn/LogIn";
 import SignUp from "./component/page/LogIn/SignUp";
 import Purchase from "./component/page/Purchase/Purchase";
+import RequireAuth from "./component/Share/RequireAuth";
 function App() {
     const queryClient = new QueryClient();
     return (
@@ -20,8 +21,20 @@ function App() {
                         <Route path="/logIn" element={<LogIn />}></Route>
                         <Route path="/signUp" element={<SignUp />}></Route>
                         <Route
+                            path="/purchase"
+                            element={
+                                <RequireAuth>
+                                    <Purchase />
+                                </RequireAuth>
+                            }
+                        ></Route>
+                        <Route
                             path="/purchase/:id"
-                            element={<Purchase />}
+                            element={
+                                <RequireAuth>
+                                    <Purchase />
+                                </RequireAuth>
+                            }
                         ></Route>
                         <Route path="*" element={<NothingFound />}></Route>
                     </Routes>
