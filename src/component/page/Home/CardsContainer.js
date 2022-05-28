@@ -12,6 +12,7 @@ const CardsContainer = ({ img }) => {
     if (allProducts) {
         loadProduct = [...allProducts];
         loadProduct.length = 6;
+        refetch();
     }
     return (
         <>
