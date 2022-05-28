@@ -47,15 +47,15 @@ function App() {
                         >
                             <Route
                                 index
-                                element={<MyOrders></MyOrders>}
+                                element={<MyProfiles></MyProfiles>}
                             ></Route>
                             <Route
                                 path="myReview"
                                 element={<MyReview></MyReview>}
                             ></Route>
                             <Route
-                                path="myProfiles"
-                                element={<MyProfiles></MyProfiles>}
+                                path="myOrders"
+                                element={<MyOrders></MyOrders>}
                             ></Route>
                             {/* For Admin */}
                             <Route

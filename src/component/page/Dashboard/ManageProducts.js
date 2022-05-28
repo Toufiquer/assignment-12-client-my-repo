@@ -95,7 +95,7 @@ const ManageProducts = () => {
                                 {/* <!-- The button to open modal --> */}
                                 <label
                                     for="modal-delete"
-                                    class="btn modal-button btn-active w-full btn-error mx-auto my-2 btn-sm"
+                                    className="btn modal-button btn-active w-full btn-error mx-auto my-2 btn-sm"
                                     onClick={() => SetDelModal(p)}
                                 >
                                     Delete
