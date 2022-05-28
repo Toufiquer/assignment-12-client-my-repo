@@ -2,36 +2,67 @@ import React, { useState } from "react";
 import img from "../../../assets/images/img.png";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import Loading from "../../Share/Loading";
+import useUrl from "../../hooks/useUrl";
 const AddAProducts = () => {
     const [conErr, SetError] = useState(null);
+    const [loading, SetLoading] = useState(false);
+    const [url] = useUrl();
     // Error
     let err;
     if (false) {
         SetError(false);
     }
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
-
     // Use Form for design and validate
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
 
+    if (loading) {
+        return <Loading />;
+    }
     // Handle Submit
     const onSubmit = async product => {
-        fetch("http://localhost:3500/addProduct", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(product),
-        })
+        SetLoading(true);
+        const img = product.img[0];
+        const formData = new FormData();
+        formData.append("image", img);
+        fetch(url, { method: "POST", body: formData })
             .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    toast("Add Successfully");
+            .then(r => {
+                if (r.success) {
+                    const imgUrl = r.data.url;
+                    product.img = imgUrl;
+                    console.log(product);
+                    // Send to server
+                    fetch(`http://localhost:3500/addProduct`, {
+                        method: "POST",
+                        headers: {
+                            "content-type": "application/json",
+                            // authorization: `Bearer ${localStorage.getItem(
+                            //     "access-token"
+                            // )}`,
+                        },
+                        body: JSON.stringify(product),
+                    })
+                        .then(res => res.json())
+                        .then(d => {
+                            SetLoading(false);
+                            if (d.insertedId) {
+                                toast("Add Successful");
+                                reset();
+                            } else {
+                                toast("Please try again.");
+                            }
+                        });
                 }
-            });
+            })
+            .catch(err => console.error(err));
     };
     return (
         <>
@@ -232,6 +263,26 @@ const AddAProducts = () => {
                             {errors.productDescription?.type === "required" && (
                                 <span className="label-text-alt text-lg text-red-500">
                                     {errors.productDescription.message}{" "}
+                                </span>
+                            )}
+                            {/* --- --- --- */}
+
+                            {/* Input File */}
+                            <input
+                                type="file"
+                                autoComplete="file"
+                                {...register("img", {
+                                    required: {
+                                        value: true,
+                                        message: "Image is Required.",
+                                    },
+                                })}
+                                placeholder="Your Image"
+                                className="btn btn-sm btn-outline w-full my-1"
+                            />
+                            {errors.email?.type === "required" && (
+                                <span className="label-text-alt text-lg text-red-500">
+                                    {errors.email.message}{" "}
                                 </span>
                             )}
                             {/* --- --- --- */}
