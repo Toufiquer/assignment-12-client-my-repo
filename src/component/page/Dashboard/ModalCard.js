@@ -1,11 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-const ModalCard = () => {
+const ModalCard = ({ product, refetch }) => {
     const [name, SetName] = useState("");
     const [email, SetEmail] = useState("");
+    const [availableQuantity, SetProductName] = useState("");
+    const [minimumQuantity, SetProductDescription] = useState("");
+    const [price, SetPrice] = useState("");
+    const [productDescription, SetMinimumQuantity] = useState("");
+    const [productName, SetAvailableQuantity] = useState("");
+    console.log(product);
     // Use Form for design and validate
+    useEffect(() => {
+        const {
+            name,
+            email,
+            availableQuantity,
+            minimumQuantity,
+            price,
+            productDescription,
+            productName,
+        } = product;
+        SetName(name);
+        SetEmail(email);
+        SetProductName(productName);
+        SetProductDescription(productDescription);
+        SetPrice(price);
+        SetMinimumQuantity(minimumQuantity);
+        SetAvailableQuantity(availableQuantity);
+    }, [product]);
     const {
         register,
         handleSubmit,
@@ -117,6 +141,146 @@ const ModalCard = () => {
                                         {errors.email?.type === "pattern" && (
                                             <span className="label-text-alt text-lg text-red-500">
                                                 {errors.email.message}{" "}
+                                            </span>
+                                        )}
+                                        {/* --- --- --- */}
+
+                                        {/* Input Product name */}
+                                        <label className="label">
+                                            <span className="label-text">
+                                                Product Name:
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            autoComplete="Product Name"
+                                            {...register("productName", {
+                                                required: {
+                                                    value: true,
+                                                    message:
+                                                        "product Name is Required.",
+                                                },
+                                            })}
+                                            placeholder="Product Name"
+                                            className="input input-bordered input-accent w-full"
+                                        />
+                                        {errors.productName?.type ===
+                                            "required" && (
+                                            <span className="label-text-alt text-lg text-red-500">
+                                                {errors.productName.message}{" "}
+                                            </span>
+                                        )}
+                                        {/* --- --- --- */}
+
+                                        {/* Input Minimum Quantity */}
+                                        <label className="label">
+                                            <span className="label-text">
+                                                Minimum Quantity :
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="number"
+                                            autoComplete="Minimum Quantity"
+                                            {...register("minimumQuantity", {
+                                                required: {
+                                                    value: true,
+                                                    message:
+                                                        "Minimum Quantity is Required.",
+                                                },
+                                            })}
+                                            placeholder="Minimum Quantity"
+                                            className="input input-bordered input-accent w-full"
+                                        />
+                                        {errors.minimumQuantity?.type ===
+                                            "required" && (
+                                            <span className="label-text-alt text-lg text-red-500">
+                                                {errors.minimumQuantity.message}{" "}
+                                            </span>
+                                        )}
+                                        {/* --- --- --- */}
+
+                                        {/* Input Available Quantity */}
+                                        <label className="label">
+                                            <span className="label-text">
+                                                Available Quantity:
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="number"
+                                            autoComplete="Available Quantity"
+                                            {...register("availableQuantity", {
+                                                required: {
+                                                    value: true,
+                                                    message:
+                                                        "Available Quantity is Required.",
+                                                },
+                                            })}
+                                            placeholder="Available Quantity"
+                                            className="input input-bordered input-accent w-full"
+                                        />
+                                        {errors.availableQuantity?.type ===
+                                            "required" && (
+                                            <span className="label-text-alt text-lg text-red-500">
+                                                {
+                                                    errors.availableQuantity
+                                                        .message
+                                                }{" "}
+                                            </span>
+                                        )}
+                                        {/* --- --- --- */}
+
+                                        {/* Input Price Per Unit */}
+                                        <label className="label">
+                                            <span className="label-text">
+                                                Price Per Unit:
+                                            </span>
+                                        </label>
+                                        <input
+                                            type="number"
+                                            autoComplete="Price Per Unit"
+                                            {...register("price", {
+                                                required: {
+                                                    value: true,
+                                                    message:
+                                                        "Price Per Unit is Required.",
+                                                },
+                                            })}
+                                            placeholder="Price Per Unit"
+                                            className="input input-bordered input-accent w-full"
+                                        />
+                                        {errors.price?.type === "required" && (
+                                            <span className="label-text-alt text-lg text-red-500">
+                                                {errors.price.message}{" "}
+                                            </span>
+                                        )}
+                                        {/* --- --- --- */}
+
+                                        {/* Input Product Description */}
+                                        <label className="label">
+                                            <span className="label-text">
+                                                Product Description:
+                                            </span>
+                                        </label>
+                                        <textarea
+                                            type="text"
+                                            autoComplete="Product Description"
+                                            {...register("productDescription", {
+                                                required: {
+                                                    value: true,
+                                                    message:
+                                                        "Product Description is Required.",
+                                                },
+                                            })}
+                                            placeholder="product Description"
+                                            className="input input-bordered input-accent w-full"
+                                        />
+                                        {errors.productDescription?.type ===
+                                            "required" && (
+                                            <span className="label-text-alt text-lg text-red-500">
+                                                {
+                                                    errors.productDescription
+                                                        .message
+                                                }{" "}
                                             </span>
                                         )}
                                         {/* --- --- --- */}

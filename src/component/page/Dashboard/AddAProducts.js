@@ -170,6 +170,7 @@ const AddAProducts = () => {
                                 </span>
                             )}
                             {/* --- --- --- */}
+
                             {/* Input Minimum Quantity */}
                             <label className="label">
                                 <span className="label-text">
@@ -195,6 +196,7 @@ const AddAProducts = () => {
                                 </span>
                             )}
                             {/* --- --- --- */}
+
                             {/* Input Available Quantity */}
                             <label className="label">
                                 <span className="label-text">
@@ -220,6 +222,7 @@ const AddAProducts = () => {
                                 </span>
                             )}
                             {/* --- --- --- */}
+
                             {/* Input Price Per Unit */}
                             <label className="label">
                                 <span className="label-text">
@@ -244,6 +247,7 @@ const AddAProducts = () => {
                                 </span>
                             )}
                             {/* --- --- --- */}
+                            
                             {/* Input Product Description */}
                             <label className="label">
                                 <span className="label-text">
