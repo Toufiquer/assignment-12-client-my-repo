@@ -4,6 +4,10 @@ import { useForm } from "react-hook-form";
 const UpdateProfile = ({ profile, SetData }) => {
     const [name, SetName] = useState("");
     const [email, SetEmail] = useState("");
+    const [education, SetEducation] = useState("");
+    const [location, SetLocation] = useState("");
+    const [phoneNumber, SetPhoneNumber] = useState("");
+    const [linkedInId, SetLinkedInId] = useState("");
     // console.log(profile);
     useEffect(() => {
         SetName(profile.name);
@@ -23,6 +27,10 @@ const UpdateProfile = ({ profile, SetData }) => {
     const onSubmit = p => {
         p.name = name;
         p.email = email;
+        p.education = education;
+        p.location = location;
+        p.phoneNumber = phoneNumber;
+        p.linkedInId = linkedInId;
         SetData(p);
     };
     return (
@@ -114,6 +122,119 @@ const UpdateProfile = ({ profile, SetData }) => {
                                 {errors.email?.type === "pattern" && (
                                     <span className="label-text-alt text-lg text-red-500">
                                         {errors.email.message}{" "}
+                                    </span>
+                                )}
+                                {/* --- --- --- */}
+
+                                {/* Input Person Education */}
+                                <label className="label">
+                                    <span className="label-text">
+                                        Education:
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    autoComplete="education"
+                                    {...register("education", {
+                                        required: {
+                                            value: true,
+                                            message: "Education is Required.",
+                                        },
+                                    })}
+                                    placeholder="Your Education"
+                                    className="input input-bordered input-accent w-full"
+                                    value={education || ""}
+                                    onChange={e => SetEducation(e.target.value)}
+                                />
+                                {errors.education?.type === "required" && (
+                                    <span className="label-text-alt text-lg text-red-500">
+                                        {errors.education.message}{" "}
+                                    </span>
+                                )}
+                                {/* --- --- --- */}
+
+                                {/* Input Person Location */}
+                                <label className="label">
+                                    <span className="label-text">
+                                        Location:
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    autoComplete="location"
+                                    {...register("location", {
+                                        required: {
+                                            value: true,
+                                            message: "Location is Required.",
+                                        },
+                                    })}
+                                    placeholder="Your Location"
+                                    className="input input-bordered input-accent w-full"
+                                    value={location || ""}
+                                    onChange={e => SetLocation(e.target.value)}
+                                />
+                                {errors.location?.type === "required" && (
+                                    <span className="label-text-alt text-lg text-red-500">
+                                        {errors.location.message}{" "}
+                                    </span>
+                                )}
+                                {/* --- --- --- */}
+
+                                {/* Input Person Phone Number */}
+                                <label className="label">
+                                    <span className="label-text">
+                                        Phone Number:
+                                    </span>
+                                </label>
+                                <input
+                                    type="number"
+                                    autoComplete="phoneNumber"
+                                    {...register("phoneNumber", {
+                                        required: {
+                                            value: true,
+                                            message:
+                                                "Phone Number is Required.",
+                                        },
+                                    })}
+                                    placeholder="Your Phone Number"
+                                    className="input input-bordered input-accent w-full"
+                                    value={phoneNumber || ""}
+                                    onChange={e =>
+                                        SetPhoneNumber(e.target.value)
+                                    }
+                                />
+                                {errors.phoneNumber?.type === "required" && (
+                                    <span className="label-text-alt text-lg text-red-500">
+                                        {errors.phoneNumber.message}{" "}
+                                    </span>
+                                )}
+                                {/* --- --- --- */}
+
+                                {/* Input Person LinkedIn id */}
+                                <label className="label">
+                                    <span className="label-text">
+                                        LinkedIn id:
+                                    </span>
+                                </label>
+                                <input
+                                    type="url"
+                                    autoComplete="linkedInId"
+                                    {...register("linkedInId", {
+                                        required: {
+                                            value: true,
+                                            message: "LinkedIn id is Required.",
+                                        },
+                                    })}
+                                    placeholder="Your LinkedIn id"
+                                    className="input input-bordered input-accent w-full"
+                                    value={linkedInId || ""}
+                                    onChange={e =>
+                                        SetLinkedInId(e.target.value)
+                                    }
+                                />
+                                {errors.linkedInId?.type === "required" && (
+                                    <span className="label-text-alt text-lg text-red-500">
+                                        {errors.linkedInId.message}{" "}
                                     </span>
                                 )}
                                 {/* --- --- --- */}

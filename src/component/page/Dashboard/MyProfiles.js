@@ -43,9 +43,27 @@ const MyProfiles = () => {
                 </div>
                 <div className="border p-4 my-6">
                     <div className="text-left">
-                        <div className="text-2xl">Name : {userData.name}</div>
-                        <div className="text-2xl">Email : {userData.email}</div>
-                        <div className="text-2xl">Role : {userData.role}</div>
+                        <div className="text-2xl">
+                            Name : {userData.name || "N/A"}
+                        </div>
+                        <div className="text-2xl">
+                            Email : {userData.email || "N/A"}
+                        </div>
+                        <div className="text-2xl">
+                            Role : {userData.role || "N/A"}
+                        </div>
+                        <div className="text-2xl">
+                            Education : {userData.education || "N/A"}
+                        </div>
+                        <div className="text-2xl">
+                            Location : {userData.location || "N/A"}
+                        </div>
+                        <div className="text-2xl">
+                            Phone Number : {userData.phoneNumber || "N/A"}
+                        </div>
+                        <div className="text-2xl">
+                            LinkedIn id : {userData.linkedInId || "N/A"}
+                        </div>
                     </div>
                 </div>
             </div>
