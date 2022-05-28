@@ -20,6 +20,7 @@ import AllUsers from "./component/page/Dashboard/AllUsers";
 import "react-toastify/dist/ReactToastify.css";
 import Products from "./component/page/Products/Products";
 import Blogs from "./component/page/Blogs/Blogs";
+import Portfolio from "./component/page/Portfolio/Portfolio";
 function App() {
     const queryClient = new QueryClient();
     return (
@@ -33,6 +34,10 @@ function App() {
                         <Route path="/signUp" element={<SignUp />}></Route>
                         <Route path="/products" element={<Products />}></Route>
                         <Route path="/blogs" element={<Blogs />}></Route>
+                        <Route
+                            path="/portfolio"
+                            element={<Portfolio />}
+                        ></Route>
                         <Route
                             path="/products/purchase/:id"
                             element={
