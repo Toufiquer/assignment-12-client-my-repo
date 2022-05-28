@@ -277,6 +277,25 @@ const ModalCard = ({ product, SetData }) => {
                                     </span>
                                 )}
                                 {/* --- --- --- */}
+                            {/* Input File */}
+                            <input
+                                type="file"
+                                autoComplete="file"
+                                {...register("img", {
+                                    required: {
+                                        value: true,
+                                        message: "Image is Required.",
+                                    },
+                                })}
+                                placeholder="Your Image"
+                                className="btn btn-sm btn-outline w-full my-1"
+                            />
+                            {errors.email?.type === "required" && (
+                                <span className="label-text-alt text-lg text-red-500">
+                                    {errors.email.message}{" "}
+                                </span>
+                            )}
+                            {/* --- --- --- */}
                             </>
 
                             {/* Error Show */}

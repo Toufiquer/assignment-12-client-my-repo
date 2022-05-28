@@ -1,40 +1,60 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import useProducts from "../../hooks/useProducts";
+import useUrl from "../../hooks/useUrl";
 import Loading from "../../Share/Loading";
 import DeleteProductModal from "./DeleteProductModal";
 import ModalCard from "./ModalCard";
 
 const ManageProducts = () => {
+    const [url] = useUrl();
     const [data, SetData] = useState(null);
     const [modal, SetModal] = useState(null);
     const [delModal, SetDelModal] = useState(null);
     const [confirmDel, SetConfirmDel] = useState(null);
     const [allProducts, isLoading, refetch] = useProducts();
-    if (isLoading) {
+    const [loading, SetLoading] = useState(false);
+    if (isLoading || loading) {
         <Loading></Loading>;
     }
     const handleUpdate = e => {
         SetModal(e);
     };
     if (data) {
-        fetch("http://localhost:3500/updateProduct", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem(
-                    "access-token-12"
-                )}`,
-            },
-            body: JSON.stringify(data),
-        })
+        SetLoading(true);
+        const img = data.img[0];
+        const formData = new FormData();
+        formData.append("image", img);
+        fetch(url, { method: "POST", body: formData })
             .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount) {
-                    toast("Update Successfully");
-                    refetch();
+            .then(r => {
+                if (r.success) {
+                    const imgUrl = r.data.url;
+                    data.img = imgUrl;
+                    console.log(data);
+                    // Send to server
+
+                    fetch("http://localhost:3500/updateProduct", {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            authorization: `Bearer ${localStorage.getItem(
+                                "access-token-12"
+                            )}`,
+                        },
+                        body: JSON.stringify(data),
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            SetLoading(false);
+                            if (data.modifiedCount) {
+                                toast("Update Successfully");
+                                refetch();
+                            }
+                        });
                 }
-            });
+            })
+            .catch(err => console.error(err));
     }
     if (confirmDel) {
         fetch("http://localhost:3500/deleteProduct", {

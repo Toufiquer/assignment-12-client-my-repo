@@ -1,8 +1,13 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import useFireBase from "../../hooks/useFirebase";
+import useRole from "../../hooks/useRole";
 
 const Dashboard = () => {
-    let role = "admin";
+    const user = useFireBase();
+    const [role] = useRole(user);
+    // let role = "admin";
+    console.log(role, "admin");
     return (
         <div>
             <div className="drawer drawer-mobile">
@@ -27,7 +32,7 @@ const Dashboard = () => {
                         <li>
                             <Link to="/dashboard">My Profile</Link>
                         </li>
-                        {role === "admin" && (
+                        {role === "Client" && (
                             <>
                                 {/* Nav for Client */}
                                 <li>
@@ -44,7 +49,7 @@ const Dashboard = () => {
                         )}
                         {/* -- -- - */}
                         {/* Nav for admin */}
-                        {role === "admin" && (
+                        {role === "Admin" && (
                             <>
                                 {/* Nav for Client */}
                                 <li>

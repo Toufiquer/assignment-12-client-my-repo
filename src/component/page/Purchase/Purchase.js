@@ -6,7 +6,6 @@ const Purchase = () => {
     const [product, SetProduct] = useState({});
     const [loading, SetLoading] = useState(false);
     const id = useParams();
-    console.log(id);
     useEffect(() => {
         if (id) {
             SetLoading(true);
@@ -34,7 +33,7 @@ const Purchase = () => {
         watch,
         formState: { errors },
     } = useForm();
-    const onSubmit = data => console.log(data);
+    const purchaseSubmit = data => console.log(data);
     return (
         <div className="my-16 container mx-auto">
             <div>
@@ -86,12 +85,13 @@ const Purchase = () => {
                     <div className="text-center text-2xl my-4">
                         Please fill the Information.
                     </div>
-                    <form className="" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="" onSubmit={handleSubmit(purchaseSubmit)}>
                         {/* Input Quantity */}
                         <label className="label">
                             <span className="label-text">Quantity:</span>
                             <span className="label-text-alt">
-                                Min Quantity : {product.minimumQuantity}
+                                Min Quantity : {product.minimumQuantity} || Max
+                                Quantity : {product.availableQuantity}
                             </span>
                         </label>
                         <input
@@ -102,13 +102,31 @@ const Purchase = () => {
                                     value: true,
                                     message: "Quantity is Required.",
                                 },
+                                min: {
+                                    value: product.minimumQuantity,
+                                    message: `Minimum Quantity : ${product.minimumQuantity}`,
+                                },
+                                max: {
+                                    value: product.availableQuantity,
+                                    message: `Maximum Quantity : ${product.availableQuantity}`,
+                                },
                             })}
                             placeholder="Select Quantity"
                             className="input input-bordered input-accent w-full my-1"
                         />
-                        {errors.name?.type === "required" && (
+                        {errors.quantity?.type === "required" && (
                             <span className="label-text-alt text-lg text-red-500">
-                                {errors.name.message}{" "}
+                                {errors.quantity.message}{" "}
+                            </span>
+                        )}
+                        {errors.quantity?.type === "min" && (
+                            <span className="label-text-alt text-lg text-red-500">
+                                {errors.quantity.message}{" "}
+                            </span>
+                        )}
+                        {errors.quantity?.type === "max" && (
+                            <span className="label-text-alt text-lg text-red-500">
+                                {errors.quantity.message}{" "}
                             </span>
                         )}
                         {/* --- --- --- */}
@@ -195,7 +213,7 @@ const Purchase = () => {
                             <span className="label-text">Mobile Number:</span>
                         </label>
                         <input
-                            type="text"
+                            type="number"
                             autoComplete="number"
                             {...register("number", {
                                 required: {
@@ -204,13 +222,19 @@ const Purchase = () => {
                                 },
                                 pattern: {
                                     value: /[0-9]{11,13}/,
-                                    message: "Provide a valid Phone Number.",
+                                    message:
+                                        "Provide a valid Phone Number. Length will be 11/13",
                                 },
                             })}
                             placeholder="Your Mobile Number"
                             className="input input-bordered input-accent w-full my-1"
                         />
                         {errors.number?.type === "required" && (
+                            <span className="label-text-alt text-lg text-red-500">
+                                {errors.number.message}{" "}
+                            </span>
+                        )}
+                        {errors.number?.type === "pattern" && (
                             <span className="label-text-alt text-lg text-red-500">
                                 {errors.number.message}{" "}
                             </span>
