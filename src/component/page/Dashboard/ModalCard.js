@@ -59,16 +59,19 @@ const ModalCard = ({ product, refetch }) => {
 
                     SetLoading(false);
                     // Send to server
-                    fetch(`http://localhost:3500/updateProduct?id=${id}`, {
-                        method: "PUT",
-                        headers: {
-                            "content-type": "application/json",
-                            // authorization: `Bearer ${localStorage.getItem(
-                            //     "access-token"
-                            // )}`,
-                        },
-                        body: JSON.stringify(updateProduct),
-                    })
+                    fetch(
+                        `https://fierce-savannah-66985.herokuapp.com/updateProduct?id=${id}`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "content-type": "application/json",
+                                // authorization: `Bearer ${localStorage.getItem(
+                                //     "access-token"
+                                // )}`,
+                            },
+                            body: JSON.stringify(updateProduct),
+                        }
+                    )
                         .then(res => res.json())
                         .then(d => {
                             console.log(d);
