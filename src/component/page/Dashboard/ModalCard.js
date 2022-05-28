@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import useUrl from "../../hooks/useUrl";
+import Loading from "../../Share/Loading";
 
 const ModalCard = ({ product, refetch }) => {
+    const [url] = useUrl();
     const [name, SetName] = useState("");
     const [email, SetEmail] = useState("");
     const [availableQuantity, SetProductName] = useState("");
@@ -10,6 +13,7 @@ const ModalCard = ({ product, refetch }) => {
     const [price, SetPrice] = useState("");
     const [productDescription, SetMinimumQuantity] = useState("");
     const [productName, SetAvailableQuantity] = useState("");
+    const [loading, SetLoading] = useState(false);
     console.log(product);
     // Use Form for design and validate
     useEffect(() => {
@@ -31,15 +35,58 @@ const ModalCard = ({ product, refetch }) => {
         SetAvailableQuantity(availableQuantity);
     }, [product]);
     const {
+        reset,
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
-    const onSubmit = e => {
-        console.log(e);
-        toast("Update");
+
+    // Handle Submit
+    const onSubmit = updateProduct => {
+        SetLoading(true);
+        const id = product._id;
+        const img = updateProduct.img[0];
+        const formData = new FormData();
+        formData.append("image", img);
+        fetch(url, { method: "POST", body: formData })
+            .then(res => res.json())
+            .then(r => {
+                if (r.success) {
+                    const imgUrl = r.data.url;
+                    updateProduct.img = imgUrl;
+                    console.log(updateProduct);
+
+                    SetLoading(false);
+                    // Send to server
+                    fetch(`http://localhost:3500/updateProduct?id=${id}`, {
+                        method: "PUT",
+                        headers: {
+                            "content-type": "application/json",
+                            // authorization: `Bearer ${localStorage.getItem(
+                            //     "access-token"
+                            // )}`,
+                        },
+                        body: JSON.stringify(updateProduct),
+                    })
+                        .then(res => res.json())
+                        .then(d => {
+                            console.log(d);
+                            if (d.result.modifiedCount > 0) {
+                                toast("Update Successful");
+                                reset();
+                                refetch();
+                            } else {
+                                toast("Please try again.");
+                            }
+                        });
+                }
+            })
+            .catch(err => console.error(err));
     };
+    if (loading) {
+        return <Loading />;
+    }
     return (
         <div>
             <div>
@@ -281,6 +328,27 @@ const ModalCard = ({ product, refetch }) => {
                                                     errors.productDescription
                                                         .message
                                                 }{" "}
+                                            </span>
+                                        )}
+                                        {/* --- --- --- */}
+
+                                        {/* Input File */}
+                                        <input
+                                            type="file"
+                                            autoComplete="file"
+                                            {...register("img", {
+                                                required: {
+                                                    value: true,
+                                                    message:
+                                                        "Image is Required.",
+                                                },
+                                            })}
+                                            placeholder="Your Image"
+                                            className="btn btn-sm btn-outline w-full my-1"
+                                        />
+                                        {errors.email?.type === "required" && (
+                                            <span className="label-text-alt text-lg text-red-500">
+                                                {errors.email.message}{" "}
                                             </span>
                                         )}
                                         {/* --- --- --- */}
