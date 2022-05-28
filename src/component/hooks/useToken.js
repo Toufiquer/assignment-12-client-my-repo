@@ -11,7 +11,7 @@ const useToken = user => {
             name: name,
         };
         if (email && name) {
-            fetch("http://localhost:3500/user", {
+            fetch("https://fierce-savannah-66985.herokuapp.com/user", {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json",

@@ -15,7 +15,7 @@ const AllUsers = () => {
     useEffect(() => {
         if (userRole) {
             SetLoading(true);
-            fetch("http://localhost:3500/updateUser", {
+            fetch("https://fierce-savannah-66985.herokuapp.com/updateUser", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(userRole),
@@ -32,7 +32,7 @@ const AllUsers = () => {
         }
         if (userDelete) {
             SetLoading(true);
-            fetch("http://localhost:3500/deleteUser", {
+            fetch("https://fierce-savannah-66985.herokuapp.com/deleteUser", {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(userDelete),

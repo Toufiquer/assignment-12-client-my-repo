@@ -1,63 +1,24 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import useProducts from "../../hooks/useProducts";
-import useUrl from "../../hooks/useUrl";
 import Loading from "../../Share/Loading";
 import DeleteProductModal from "./DeleteProductModal";
 import ModalCard from "./ModalCard";
 
 const ManageProducts = () => {
-    const [url] = useUrl();
-    const [data, SetData] = useState(null);
     const [modal, SetModal] = useState(null);
     const [delModal, SetDelModal] = useState(null);
     const [confirmDel, SetConfirmDel] = useState(null);
     const [allProducts, isLoading, refetch] = useProducts();
     const [loading, SetLoading] = useState(false);
     if (isLoading || loading) {
-        <Loading></Loading>;
+        return <Loading></Loading>;
     }
     const handleUpdate = e => {
         SetModal(e);
     };
-    if (data) {
-        SetLoading(true);
-        const img = data.img[0];
-        const formData = new FormData();
-        formData.append("image", img);
-        fetch(url, { method: "POST", body: formData })
-            .then(res => res.json())
-            .then(r => {
-                if (r.success) {
-                    const imgUrl = r.data.url;
-                    data.img = imgUrl;
-                    console.log(data);
-                    // Send to server
-
-                    fetch("http://localhost:3500/updateProduct", {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json",
-                            authorization: `Bearer ${localStorage.getItem(
-                                "access-token-12"
-                            )}`,
-                        },
-                        body: JSON.stringify(data),
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            SetLoading(false);
-                            if (data.modifiedCount) {
-                                toast("Update Successfully");
-                                refetch();
-                            }
-                        });
-                }
-            })
-            .catch(err => console.error(err));
-    }
     if (confirmDel) {
-        fetch("http://localhost:3500/deleteProduct", {
+        fetch("https://fierce-savannah-66985.herokuapp.com/deleteProduct", {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id: confirmDel }),
@@ -114,7 +75,7 @@ const ManageProducts = () => {
                             <td>
                                 {/* <!-- The button to open modal --> */}
                                 <label
-                                    for="modal-delete"
+                                    htmlFor="modal-delete"
                                     className="btn modal-button btn-active w-full btn-error mx-auto my-2 btn-sm"
                                     onClick={() => SetDelModal(p)}
                                 >
@@ -126,7 +87,7 @@ const ManageProducts = () => {
                 </tbody>
             </table>
             {/* End Table */}
-            {modal && <ModalCard product={modal} SetData={SetData} />}
+            {modal && <ModalCard product={modal} refetch={refetch} />}
             {delModal && (
                 <DeleteProductModal
                     product={delModal}

@@ -40,16 +40,19 @@ const AddAProducts = () => {
                     product.img = imgUrl;
                     console.log(product);
                     // Send to server
-                    fetch(`http://localhost:3500/addProduct`, {
-                        method: "POST",
-                        headers: {
-                            "content-type": "application/json",
-                            // authorization: `Bearer ${localStorage.getItem(
-                            //     "access-token"
-                            // )}`,
-                        },
-                        body: JSON.stringify(product),
-                    })
+                    fetch(
+                        `https://fierce-savannah-66985.herokuapp.com/addProduct`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json",
+                                // authorization: `Bearer ${localStorage.getItem(
+                                //     "access-token"
+                                // )}`,
+                            },
+                            body: JSON.stringify(product),
+                        }
+                    )
                         .then(res => res.json())
                         .then(d => {
                             SetLoading(false);

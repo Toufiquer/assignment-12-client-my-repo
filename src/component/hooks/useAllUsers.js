@@ -8,7 +8,9 @@ const useAllUsers = () => {
         isLoading,
         refetch,
     } = useQuery("allUsers", () =>
-        fetch(`http://localhost:3500/allUsers`).then(res => res.json())
+        fetch(`https://fierce-savannah-66985.herokuapp.com/allUsers`).then(
+            res => res.json()
+        )
     );
     useEffect(() => {
         SetAllUsers(allUsersData);

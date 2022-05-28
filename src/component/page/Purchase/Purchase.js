@@ -9,14 +9,17 @@ const Purchase = () => {
     useEffect(() => {
         if (id) {
             SetLoading(true);
-            fetch(`http://localhost:3500/product?id=${id.id}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    // authorization: `Bearer ${localStorage.getItem(
-                    //     "access-token-12"
-                    // )}`,
-                },
-            })
+            fetch(
+                `https://fierce-savannah-66985.herokuapp.com/product?id=${id.id}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        // authorization: `Bearer ${localStorage.getItem(
+                        //     "access-token-12"
+                        // )}`,
+                    },
+                }
+            )
                 .then(res => res.json())
                 .then(data => {
                     SetProduct(data);

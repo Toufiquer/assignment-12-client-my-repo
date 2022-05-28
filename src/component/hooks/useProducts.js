@@ -8,7 +8,9 @@ const useProducts = () => {
         isLoading,
         refetch,
     } = useQuery("doctorServices", () =>
-        fetch(`http://localhost:3500/allProducts`).then(res => res.json())
+        fetch(`https://fierce-savannah-66985.herokuapp.com/allProducts`).then(
+            res => res.json()
+        )
     );
     useEffect(() => {
         SetAllProducts(products);

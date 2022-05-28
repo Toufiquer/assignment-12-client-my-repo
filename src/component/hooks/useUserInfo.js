@@ -12,9 +12,9 @@ const useUserInfo = user => {
         isLoading,
         refetch,
     } = useQuery(["userData", email], () =>
-        fetch(`http://localhost:3500/user?email=${email}`).then(res =>
-            res.json()
-        )
+        fetch(
+            `https://fierce-savannah-66985.herokuapp.com/user?email=${email}`
+        ).then(res => res.json())
     );
     useEffect(() => {
         if (fetchData?.result?._id) {

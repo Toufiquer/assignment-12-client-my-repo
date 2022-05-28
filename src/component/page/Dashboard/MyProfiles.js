@@ -17,7 +17,7 @@ const MyProfiles = () => {
     useEffect(() => {
         if (data.email) {
             SetLoading(true);
-            fetch("http://localhost:3500/updateUser", {
+            fetch("https://fierce-savannah-66985.herokuapp.com/updateUser", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
