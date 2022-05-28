@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ p, img }) => {
+const Card = ({ p }) => {
+    const img = p.img;
     return (
-        <div>
+        <div className="border p-4">
             <div className="card w-96 bg-base-100 shadow-xl">
                 <figure>
-                    <img src={img} alt="Shoes" />
+                    <img className="w-68 h-44" src={img} alt="Shoes" />
                 </figure>
                 <div className="card-body text-center">
                     <h2 className="text-xl">{p.productName}</h2>

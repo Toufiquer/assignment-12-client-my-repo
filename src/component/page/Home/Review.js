@@ -10,7 +10,7 @@ const Review = () => {
                         <div className="avatar mx-auto">
                             <div className="w-24 rounded-full">
                                 <img
-                                    src="https://api.lorem.space/image/car?w=800&h=200&hash=8B7BCDC2"
+                                    src="https://previews.123rf.com/images/artemstepanov/artemstepanov1606/artemstepanov160601046/57880420-vector-female-face-avatar-template-pictogram-button-round-trendy-flat-icon-with-women-for-business-i.jpg?fj=1"
                                     alt="Item"
                                 />
                             </div>
@@ -67,7 +67,7 @@ const Review = () => {
                         <div className="avatar mx-auto">
                             <div className="w-24 rounded-full">
                                 <img
-                                    src="https://api.lorem.space/image/car?w=800&h=200&hash=8B7BCDC2"
+                                    src="https://previews.123rf.com/images/artemstepanov/artemstepanov1606/artemstepanov160601046/57880420-vector-female-face-avatar-template-pictogram-button-round-trendy-flat-icon-with-women-for-business-i.jpg?fj=2"
                                     alt="Item"
                                 />
                             </div>
@@ -124,7 +124,7 @@ const Review = () => {
                         <div className="avatar mx-auto">
                             <div className="w-24 rounded-full">
                                 <img
-                                    src="https://api.lorem.space/image/car?w=800&h=200&hash=8B7BCDC2"
+                                    src="https://previews.123rf.com/images/artemstepanov/artemstepanov1606/artemstepanov160601046/57880420-vector-female-face-avatar-template-pictogram-button-round-trendy-flat-icon-with-women-for-business-i.jpg?fj=1"
                                     alt="Item"
                                 />
                             </div>
@@ -181,7 +181,7 @@ const Review = () => {
                         <div className="avatar mx-auto">
                             <div className="w-24 rounded-full">
                                 <img
-                                    src="https://api.lorem.space/image/car?w=800&h=200&hash=8B7BCDC2"
+                                    src="https://previews.123rf.com/images/artemstepanov/artemstepanov1606/artemstepanov160601046/57880420-vector-female-face-avatar-template-pictogram-button-round-trendy-flat-icon-with-women-for-business-i.jpg?fj=1"
                                     alt="Item"
                                 />
                             </div>

@@ -44,7 +44,7 @@ const Purchase = () => {
                     <div className="hero bg-base-200">
                         <div className="hero-content flex-col lg:flex-row">
                             <img
-                                src="https://api.lorem.space/image/movie?w=260&h=400"
+                                src={product.img}
                                 className="max-w-sm rounded-lg shadow-2xl"
                                 alt="Name"
                             />
@@ -147,7 +147,8 @@ const Purchase = () => {
                                     message: "Name is Required.",
                                 },
                             })}
-                            placeholder="Your Name"
+                            value={product.name || ""}
+                            readonly
                             className="input input-bordered input-accent w-full my-1"
                         />
                         {errors.name?.type === "required" && (
@@ -174,7 +175,8 @@ const Purchase = () => {
                                     message: "Provide a valid Email.",
                                 },
                             })}
-                            placeholder="Your Email"
+                            value={product.email || ""}
+                            readonly
                             className="input input-bordered input-accent w-full my-1"
                         />
                         {errors.email?.type === "required" && (

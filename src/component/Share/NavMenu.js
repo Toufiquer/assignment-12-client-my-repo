@@ -109,7 +109,7 @@ const NavMenu = () => {
                             to="/"
                             className="btn btn-ghost normal-case text-xl"
                         >
-                            The New Project
+                            Wholesale Master
                         </Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">

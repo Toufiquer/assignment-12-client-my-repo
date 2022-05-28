@@ -22,7 +22,8 @@ const BusinessSummary = () => {
                             <div className="card w-96 bg-base-100 shadow-xl image-full text-center justify-center">
                                 <figure>
                                     <img
-                                        src="https://api.lorem.space/image/shoes?w=400&h=225"
+                                        className="w-14 h-14"
+                                        src="https://cdn-cjcgn.nitrocdn.com/AqZGLUgovpyOEexQpCZfkhWEayCsnoKP/assets/static/optimized/rev-293e6df/wp-content/uploads/2013/04/tape-measure.jpg"
                                         alt="Shoes"
                                     />
                                 </figure>
@@ -44,7 +45,8 @@ const BusinessSummary = () => {
                             <div className="card w-96 bg-base-100 shadow-xl image-full text-center justify-center">
                                 <figure>
                                     <img
-                                        src="https://api.lorem.space/image/shoes?w=400&h=225"
+                                        className="w-14 h-14"
+                                        src="https://cdn-cjcgn.nitrocdn.com/AqZGLUgovpyOEexQpCZfkhWEayCsnoKP/assets/static/optimized/rev-293e6df/wp-content/uploads/2013/04/level-150x150.jpg"
                                         alt="Shoes"
                                     />
                                 </figure>
@@ -66,7 +68,8 @@ const BusinessSummary = () => {
                             <div className="card w-96 bg-base-100 shadow-xl image-full text-center justify-center">
                                 <figure>
                                     <img
-                                        src="https://api.lorem.space/image/shoes?w=400&h=225"
+                                        className="w-14 h-14"
+                                        src="https://cdn-cjcgn.nitrocdn.com/AqZGLUgovpyOEexQpCZfkhWEayCsnoKP/assets/static/optimized/rev-293e6df/wp-content/uploads/2013/04/screwdriver.jpg"
                                         alt="Shoes"
                                     />
                                 </figure>
@@ -88,7 +91,8 @@ const BusinessSummary = () => {
                             <div className="card w-96 bg-base-100 shadow-xl image-full text-center justify-center">
                                 <figure>
                                     <img
-                                        src="https://api.lorem.space/image/shoes?w=400&h=225"
+                                        className="w-14 h-14"
+                                        src="https://cdn-cjcgn.nitrocdn.com/AqZGLUgovpyOEexQpCZfkhWEayCsnoKP/assets/static/optimized/rev-293e6df/wp-content/uploads/2013/04/nail-set.jpg"
                                         alt="Shoes"
                                     />
                                 </figure>
