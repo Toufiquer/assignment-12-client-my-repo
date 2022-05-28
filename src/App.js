@@ -18,6 +18,8 @@ import AddAProducts from "./component/page/Dashboard/AddAProducts";
 import ManageProducts from "./component/page/Dashboard/ManageProducts";
 import AllUsers from "./component/page/Dashboard/AllUsers";
 import "react-toastify/dist/ReactToastify.css";
+import Products from "./component/page/Products/Products";
+import Blogs from "./component/page/Blogs/Blogs";
 function App() {
     const queryClient = new QueryClient();
     return (
@@ -29,6 +31,16 @@ function App() {
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/logIn" element={<LogIn />}></Route>
                         <Route path="/signUp" element={<SignUp />}></Route>
+                        <Route path="/products" element={<Products />}></Route>
+                        <Route path="/blogs" element={<Blogs />}></Route>
+                        <Route
+                            path="/products/purchase/:id"
+                            element={
+                                <RequireAuth>
+                                    <Purchase />
+                                </RequireAuth>
+                            }
+                        ></Route>
                         <Route
                             path="/purchase/:id"
                             element={
