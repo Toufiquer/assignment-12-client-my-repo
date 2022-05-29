@@ -17,7 +17,12 @@ const AllUsers = () => {
             SetLoading(true);
             fetch("https://fierce-savannah-66985.herokuapp.com/updateUser", {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${localStorage.getItem(
+                        "access-token-12"
+                    )}`,
+                },
                 body: JSON.stringify(userRole),
             })
                 .then(res => res.json())
@@ -34,7 +39,12 @@ const AllUsers = () => {
             SetLoading(true);
             fetch("https://fierce-savannah-66985.herokuapp.com/deleteUser", {
                 method: "DELETE",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${localStorage.getItem(
+                        "access-token-12"
+                    )}`,
+                },
                 body: JSON.stringify(userDelete),
             })
                 .then(res => res.json())

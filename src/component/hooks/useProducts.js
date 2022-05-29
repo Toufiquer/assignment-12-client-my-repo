@@ -7,10 +7,15 @@ const useProducts = () => {
         data: products,
         isLoading,
         refetch,
-    } = useQuery("doctorServices", () =>
-        fetch(`https://fierce-savannah-66985.herokuapp.com/allProducts`).then(
-            res => res.json()
-        )
+    } = useQuery("allProducts", () =>
+        fetch(`https://fierce-savannah-66985.herokuapp.com/allProducts`, {
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${localStorage.getItem(
+                    "access-token-12"
+                )}`,
+            },
+        }).then(res => res.json())
     );
     useEffect(() => {
         SetAllProducts(products);

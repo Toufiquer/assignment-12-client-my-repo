@@ -7,10 +7,15 @@ const useAllOrders = () => {
         data: addOrdersData,
         isLoading,
         refetch,
-    } = useQuery("addOrders", () =>
-        fetch(
-            `https://fierce-savannah-66985.herokuapp.com/adminAllOrders`
-        ).then(res => res.json())
+    } = useQuery("adminAllOrders", () =>
+        fetch(`https://fierce-savannah-66985.herokuapp.com/adminAllOrders`, {
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${localStorage.getItem(
+                    "access-token-12"
+                )}`,
+            },
+        }).then(res => res.json())
     );
     useEffect(() => {
         SetAllOrders(addOrdersData);

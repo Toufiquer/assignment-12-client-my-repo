@@ -46,9 +46,9 @@ const AddAProducts = () => {
                             method: "POST",
                             headers: {
                                 "content-type": "application/json",
-                                // authorization: `Bearer ${localStorage.getItem(
-                                //     "access-token"
-                                // )}`,
+                                authorization: `Bearer ${localStorage.getItem(
+                                    "access-token-12"
+                                )}`,
                             },
                             body: JSON.stringify(product),
                         }

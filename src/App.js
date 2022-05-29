@@ -21,6 +21,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Products from "./component/page/Products/Products";
 import Blogs from "./component/page/Blogs/Blogs";
 import Portfolio from "./component/page/Portfolio/Portfolio";
+import RequireAdmin from "./component/Share/RequireAdmin";
+import Payment from "./component/page/Payment/Payment";
 function App() {
     const queryClient = new QueryClient();
     return (
@@ -43,6 +45,14 @@ function App() {
                             element={
                                 <RequireAuth>
                                     <Purchase />
+                                </RequireAuth>
+                            }
+                        ></Route>
+                        <Route
+                            path="/payment/:id"
+                            element={
+                                <RequireAuth>
+                                    <Payment />
                                 </RequireAuth>
                             }
                         ></Route>
@@ -77,19 +87,35 @@ function App() {
                             {/* For Admin */}
                             <Route
                                 path="manageAllOrders"
-                                element={<ManageAllOrders></ManageAllOrders>}
+                                element={
+                                    <RequireAdmin>
+                                        <ManageAllOrders></ManageAllOrders>
+                                    </RequireAdmin>
+                                }
                             ></Route>
                             <Route
                                 path="addAProducts"
-                                element={<AddAProducts></AddAProducts>}
+                                element={
+                                    <RequireAdmin>
+                                        <AddAProducts></AddAProducts>
+                                    </RequireAdmin>
+                                }
                             ></Route>
                             <Route
                                 path="manageProducts"
-                                element={<ManageProducts></ManageProducts>}
+                                element={
+                                    <RequireAdmin>
+                                        <ManageProducts></ManageProducts>
+                                    </RequireAdmin>
+                                }
                             ></Route>
                             <Route
                                 path="allUsers"
-                                element={<AllUsers></AllUsers>}
+                                element={
+                                    <RequireAdmin>
+                                        <AllUsers></AllUsers>
+                                    </RequireAdmin>
+                                }
                             ></Route>
                         </Route>
                         <Route path="*" element={<NothingFound />}></Route>

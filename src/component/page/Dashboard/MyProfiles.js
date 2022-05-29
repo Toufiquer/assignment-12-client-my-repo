@@ -19,7 +19,12 @@ const MyProfiles = () => {
             SetLoading(true);
             fetch("https://fierce-savannah-66985.herokuapp.com/updateUser", {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${localStorage.getItem(
+                        "access-token-12"
+                    )}`,
+                },
                 body: JSON.stringify(data),
             })
                 .then(res => res.json())
@@ -43,11 +48,11 @@ const MyProfiles = () => {
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-[_1fr,_3fr]">
                     <div className="border p-2">
-                        <div class="avatar">
-                            <div class="rounded">
+                        <div className="avatar">
+                            <div className="rounded">
                                 <img
                                     className="w-full h-full"
-                                    src={userData.img}
+                                    src={userData?.img}
                                     alt={userData.name}
                                 />
                             </div>

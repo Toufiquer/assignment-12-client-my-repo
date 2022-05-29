@@ -7,7 +7,7 @@ const NavMenu = () => {
     const [user] = useAuthState(auth);
     // console.log(user?.uid);
     const handleSignOut = () => {
-        localStorage.removeItem("access-token");
+        localStorage.removeItem("access-token-12");
         signOut(auth);
     };
     return (

@@ -20,7 +20,12 @@ const ManageProducts = () => {
     if (confirmDel) {
         fetch("https://fierce-savannah-66985.herokuapp.com/deleteProduct", {
             method: "DELETE",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${localStorage.getItem(
+                    "access-token-12"
+                )}`,
+            },
             body: JSON.stringify({ id: confirmDel }),
         })
             .then(res => res.json())

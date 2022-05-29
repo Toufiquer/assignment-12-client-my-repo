@@ -15,7 +15,15 @@ const MyOrders = () => {
         SetLoading(true);
         if (email) {
             fetch(
-                `https://fierce-savannah-66985.herokuapp.com/clientAllOrders?email=${email}`
+                `https://fierce-savannah-66985.herokuapp.com/clientAllOrders?email=${email}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${localStorage.getItem(
+                            "access-token-12"
+                        )}`,
+                    },
+                }
             )
                 .then(res => res.json())
                 .then(r => SetAllOrders(r));
@@ -31,7 +39,12 @@ const MyOrders = () => {
                     `https://fierce-savannah-66985.herokuapp.com/deleteClientProduct?id=${id}`,
                     {
                         method: "DELETE",
-                        headers: { "Content-Type": "application/json" },
+                        headers: {
+                            "Content-Type": "application/json",
+                            authorization: `Bearer ${localStorage.getItem(
+                                "access-token-12"
+                            )}`,
+                        },
                     }
                 )
                     .then(res => res.json())

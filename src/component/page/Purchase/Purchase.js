@@ -18,9 +18,9 @@ const Purchase = () => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        // authorization: `Bearer ${localStorage.getItem(
-                        //     "access-token-12"
-                        // )}`,
+                        authorization: `Bearer ${localStorage.getItem(
+                            "access-token-12"
+                        )}`,
                     },
                 }
             )
@@ -48,9 +48,9 @@ const Purchase = () => {
             method: "POST",
             headers: {
                 "content-type": "application/json",
-                // authorization: `Bearer ${localStorage.getItem(
-                //     "access-token"
-                // )}`,
+                authorization: `Bearer ${localStorage.getItem(
+                    "access-token-12"
+                )}`,
             },
             body: JSON.stringify(order),
         })
@@ -64,7 +64,7 @@ const Purchase = () => {
                     toast("Order submitted");
                     reset();
                     // console.log(r);
-                    navigate("/payment");
+                    navigate(`/payment/${id.id}`);
                 }
             });
     };

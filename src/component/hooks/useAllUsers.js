@@ -8,9 +8,14 @@ const useAllUsers = () => {
         isLoading,
         refetch,
     } = useQuery("allUsers", () =>
-        fetch(`https://fierce-savannah-66985.herokuapp.com/allUsers`).then(
-            res => res.json()
-        )
+        fetch(`https://fierce-savannah-66985.herokuapp.com/allUsers`, {
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${localStorage.getItem(
+                    "access-token-12"
+                )}`,
+            },
+        }).then(res => res.json())
     );
     useEffect(() => {
         SetAllUsers(allUsersData);
