@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Loading from "../../Share/Loading";
 const Purchase = () => {
+    const navigate = useNavigate();
     const [product, SetProduct] = useState({});
     const [loading, SetLoading] = useState(false);
     const id = useParams();
@@ -34,9 +36,36 @@ const Purchase = () => {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm();
-    const purchaseSubmit = data => console.log(data);
+    const purchaseSubmit = order => {
+        order.ProductId = id.id;
+        order.productName = product.productName;
+        fetch(`https://fierce-savannah-66985.herokuapp.com/addOrder`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                // authorization: `Bearer ${localStorage.getItem(
+                //     "access-token"
+                // )}`,
+            },
+            body: JSON.stringify(order),
+        })
+            .then(res => res.json())
+            .then(r => {
+                if (r.exists) {
+                    toast("Order Already Exist. Try another one.");
+                } else if (r.success === false) {
+                    toast("Please Try again");
+                } else {
+                    toast("Order submitted");
+                    reset();
+                    // console.log(r);
+                    navigate("/payment");
+                }
+            });
+    };
     return (
         <div className="my-16 container mx-auto">
             <div>
@@ -148,7 +177,7 @@ const Purchase = () => {
                                 },
                             })}
                             value={product.name || ""}
-                            readonly
+                            readOnly
                             className="input input-bordered input-accent w-full my-1"
                         />
                         {errors.name?.type === "required" && (
@@ -176,7 +205,7 @@ const Purchase = () => {
                                 },
                             })}
                             value={product.email || ""}
-                            readonly
+                            readOnly
                             className="input input-bordered input-accent w-full my-1"
                         />
                         {errors.email?.type === "required" && (

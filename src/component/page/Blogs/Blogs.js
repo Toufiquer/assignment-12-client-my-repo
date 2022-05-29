@@ -14,8 +14,8 @@ const Blogs = () => {
                     <div className="collapse-content bg-primary text-primary-content peer-checked:bg-base-200 peer-checked:text-base-200-content">
                         {/* Start */}
 
-                        <div class="overflow-x-auto">
-                            <table class="table w-full">
+                        <div className="overflow-x-auto">
+                            <table className="table w-full">
                                 <thead>
                                     <tr>
                                         <th>
@@ -72,8 +72,8 @@ const Blogs = () => {
                     <div className="collapse-content bg-primary text-primary-content peer-checked:bg-base-200 peer-checked:text-base-200-content">
                         {/* Start */}
 
-                        <div class="overflow-x-auto">
-                            <table class="table w-full">
+                        <div className="overflow-x-auto">
+                            <table className="table w-full">
                                 <thead>
                                     <tr>
                                         <th>
@@ -142,7 +142,7 @@ const Blogs = () => {
                     <div className="collapse-content bg-primary text-primary-content peer-checked:bg-base-200 peer-checked:text-base-200-content">
                         {/* Start */}
 
-                        <div class="text-2xl my-4">
+                        <div className="text-2xl my-4">
                             When it comes to inheritance, JavaScript only has
                             one construct: objects. Each object has a private
                             property which holds a link to another object called
@@ -153,7 +153,7 @@ const Blogs = () => {
                             prototype chain.
                         </div>
                         <hr />
-                        <div class="text-2xl">
+                        <div className="text-2xl">
                             JavaScript objects are dynamic "bags" of properties
                             (referred to as own properties). JavaScript objects
                             have a link to a prototype object. When trying to
@@ -182,7 +182,7 @@ const Blogs = () => {
                     <div className="collapse-content bg-primary text-primary-content peer-checked:bg-base-200 peer-checked:text-base-200-content">
                         {/* Start */}
 
-                        <div class="text-2xl my-4">
+                        <div className="text-2xl my-4">
                             We need to load a dynamic data. one is loaded first
                             then we update data as we need. but we need to fixed
                             out put to display data. in short we use [products,
@@ -205,7 +205,7 @@ const Blogs = () => {
                     <div className="collapse-content bg-primary text-primary-content peer-checked:bg-base-200 peer-checked:text-base-200-content">
                         {/* Start */}
 
-                        <div class="text-2xl my-4">
+                        <div className="text-2xl my-4">
                             UNIT TESTING is a type of software testing where
                             individual units or components of a software are
                             tested. The purpose is to validate that each unit of

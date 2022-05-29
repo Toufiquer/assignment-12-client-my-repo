@@ -45,7 +45,7 @@ const SignUp = () => {
     // Error
     if (gError || error || uError) {
         err = gError?.message || error?.message || uError?.message;
-        console.log(err);
+        // console.log(err);
         SetError(err);
     }
     // After get the token

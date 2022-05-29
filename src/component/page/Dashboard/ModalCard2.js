@@ -34,7 +34,7 @@ const ModalCard = ({ product, refetch }) => {
     // --- -- -- -- -- -- -- - - - -  -  -  -  -   -    -
     // Handle Submit
     const handleUpdate = data => {
-        console.log("inside", data);
+        // console.log("inside", data);
         SetLoading(true);
         const img = data.img[0];
         const formData = new FormData();
@@ -45,7 +45,7 @@ const ModalCard = ({ product, refetch }) => {
                 if (r.success) {
                     const imgUrl = r.data.url;
                     data.img = imgUrl;
-                    console.log(data);
+                    // console.log(data);
                     // Send to server
 
                     fetch(

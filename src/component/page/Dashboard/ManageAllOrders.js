@@ -8,13 +8,13 @@ const ManageAllOrders = () => {
         { name: "Name", email: "email" },
     ];
     const mkAdmin = e => {
-        console.log(e);
+        // console.log(e);
     };
     const mkClient = e => {
-        console.log(e);
+        // console.log(e);
     };
     const handleDelete = e => {
-        console.log(e);
+        // console.log(e);
     };
     return (
         <div>

@@ -1,7 +1,7 @@
 import React from "react";
 
 const DeleteProductModal = ({ product, SetConfirmDel }) => {
-    console.log(product);
+    // console.log(product);
     const handleDelete = id => {
         SetConfirmDel(id);
     };

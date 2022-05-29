@@ -49,7 +49,7 @@ const LogIn = () => {
     // Error
     if (gError || error) {
         err = gError?.message || error?.message;
-        console.log(err);
+        // console.log(err);
     }
 
     // Handle Submit

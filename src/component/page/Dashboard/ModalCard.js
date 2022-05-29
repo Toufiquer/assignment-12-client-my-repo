@@ -14,7 +14,7 @@ const ModalCard = ({ product, refetch }) => {
     const [productDescription, SetMinimumQuantity] = useState("");
     const [productName, SetAvailableQuantity] = useState("");
     const [loading, SetLoading] = useState(false);
-    console.log(product);
+    // console.log(product);
     // Use Form for design and validate
     useEffect(() => {
         const {
@@ -55,7 +55,7 @@ const ModalCard = ({ product, refetch }) => {
                 if (r.success) {
                     const imgUrl = r.data.url;
                     updateProduct.img = imgUrl;
-                    console.log(updateProduct);
+                    // console.log(updateProduct);
 
                     SetLoading(false);
                     // Send to server
@@ -74,7 +74,7 @@ const ModalCard = ({ product, refetch }) => {
                     )
                         .then(res => res.json())
                         .then(d => {
-                            console.log(d);
+                            // console.log(d);
                             if (d.result.modifiedCount > 0) {
                                 toast("Update Successful");
                                 reset();

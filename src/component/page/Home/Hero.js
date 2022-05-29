@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Hero = ({ img }) => {
     return (
-        <div>
-            <div className="hero min-h-screen bg-base-200">
+        <div style={{ backgroundImage: { img } }}>
+            <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img
                         src="https://cdn-cjcgn.nitrocdn.com/AqZGLUgovpyOEexQpCZfkhWEayCsnoKP/assets/static/optimized/rev-293e6df/wp-content/uploads/2013/04/click-here-family-photo-small.jpg"

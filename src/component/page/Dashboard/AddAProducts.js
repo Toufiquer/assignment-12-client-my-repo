@@ -38,7 +38,7 @@ const AddAProducts = () => {
                 if (r.success) {
                     const imgUrl = r.data.url;
                     product.img = imgUrl;
-                    console.log(product);
+                    // console.log(product);
                     // Send to server
                     fetch(
                         `https://fierce-savannah-66985.herokuapp.com/addProduct`,
