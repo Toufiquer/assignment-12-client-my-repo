@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import useUrl from "../../hooks/useUrl";
 
-const UpdateProfile = ({ profile, SetData }) => {
+const UpdateProfile = ({ profile, SetData, SetLoading }) => {
+    const url = useUrl();
     const [name, SetName] = useState("");
     const [email, SetEmail] = useState("");
     const [education, SetEducation] = useState("");
@@ -31,6 +33,22 @@ const UpdateProfile = ({ profile, SetData }) => {
         p.location = location;
         p.phoneNumber = phoneNumber;
         p.linkedInId = linkedInId;
+        // -- --- -- --
+        SetLoading(true);
+        const img = p.img[0];
+        const formData = new FormData();
+        formData.append("image", img);
+        fetch(url, { method: "POST", body: formData })
+            .then(res => res.json())
+            .then(r => {
+                if (r.success) {
+                    const imgUrl = r.data.url;
+                    p.img = imgUrl;
+                }
+            })
+            .catch(err => console.error(err));
+        // -- --- -- --
+        console.log(p);
         SetData(p);
     };
     return (
@@ -58,6 +76,39 @@ const UpdateProfile = ({ profile, SetData }) => {
                             className="flex flex-col w-full mx-auto gap-4"
                             onSubmit={handleSubmit(onSubmit)}
                         >
+                            {/* Input File */}
+                            <input
+                                type="file"
+                                autoComplete="file"
+                                {...register("img", {
+                                    required: {
+                                        value: true,
+                                        message: "Image is Required.",
+                                    },
+                                })}
+                                placeholder="Your Image"
+                                className="form-control
+                                block
+                                w-full
+                                px-3
+                                py-1.5
+                                text-base
+                                font-normal
+                                text-white-700
+                                bg-none bg-clip-padding
+                                border border-solid border-accent
+                                rounded
+                                transition
+                                ease-in-out
+                                m-0
+                                focus:text-white-700 focus:bg-none focus:border-blue-600 focus:outline-none hover:cursor-pointer"
+                            />
+                            {errors.email?.type === "required" && (
+                                <span className="label-text-alt text-lg text-red-500">
+                                    {errors.email.message}{" "}
+                                </span>
+                            )}
+                            {/* --- --- --- */}
                             {/* Input Person Name */}
                             <label className="label">
                                 <span className="label-text">Name:</span>

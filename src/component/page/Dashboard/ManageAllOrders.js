@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import useAllOrders from "../../hooks/useAllOrders";
+import Loading from "../../Share/Loading";
+import ClientDeleteModal from "./ClientDeleteModal";
 
 const ManageAllOrders = () => {
-    const allUsers = [
-        { name: "Name", email: "email" },
-        { name: "Name", email: "email" },
-        { name: "Name", email: "email" },
-        { name: "Name", email: "email" },
-    ];
-    const mkAdmin = e => {
-        // console.log(e);
-    };
-    const mkClient = e => {
-        // console.log(e);
-    };
+    const [loading, SetLoading] = useState(false);
+    const [deleteModal, SetDeleteModal] = useState(null);
+    const [data, SetDelete] = useState(null);
+    const [addOrders, isLoading, refetch] = useAllOrders();
+    useEffect(() => {
+        if (data) {
+            SetLoading(true);
+            if (data) {
+                const id = data._id;
+                fetch(
+                    `https://fierce-savannah-66985.herokuapp.com/deleteClientProduct?id=${id}`,
+                    {
+                        method: "DELETE",
+                        headers: { "Content-Type": "application/json" },
+                    }
+                )
+                    .then(res => res.json())
+                    .then(r => {
+                        if (r.deletedCount > 0) {
+                            toast("Delete Successfully");
+                            refetch();
+                        } else {
+                            toast("Try Again");
+                        }
+                    });
+            }
+            SetLoading(false);
+        }
+    }, [data, refetch]);
+    if (isLoading || loading) {
+        return <Loading />;
+    }
     const handleDelete = e => {
         // console.log(e);
     };
@@ -27,44 +51,40 @@ const ManageAllOrders = () => {
                             <th className="text-xl font-bold">Sl. No</th>
                             <th className="text-xl font-bold">Name</th>
                             <th className="text-xl font-bold">Email</th>
-                            <th className="text-xl font-bold">Role</th>
+                            <th className="text-xl font-bold">Quantity</th>
+                            <th className="text-xl font-bold">Payment</th>
                             <th className="text-xl font-bold">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* <!-- row 1 --> */}
-                        {allUsers?.map((p, i) => (
+                        {addOrders?.map((p, i) => (
                             <tr key={i} className={i % 2 === 1 ? "active" : ""}>
                                 <th>{i + 1}</th>
                                 <td>{p.name}</td>
                                 <td>{p.email}</td>
+                                <td>{p.quantity}</td>
+                                <td>{p.payment || "Not paid"}</td>
                                 <td>
-                                    <span
-                                        className="btn flex items-center justify-center"
-                                        onClick={() => {
-                                            if (p.role !== "admin") {
-                                                mkAdmin(p.email);
-                                            } else {
-                                                mkClient(p.email);
-                                            }
-                                        }}
+                                    <label
+                                        htmlFor="client-product-delete"
+                                        className="btn modal-button btn-active w-full btn-error mx-auto my-2 btn-sm"
+                                        onClick={() => SetDeleteModal(p)}
                                     >
-                                        {p.role || "Client"}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span
-                                        className="btn flex items-center justify-center text-2xl bg-red-500"
-                                        onClick={() => handleDelete(p.email)}
-                                    >
-                                        X
-                                    </span>
+                                        Delete
+                                    </label>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
                 {/* End Table */}
+                {deleteModal && (
+                    <ClientDeleteModal
+                        data={deleteModal}
+                        SetDelete={SetDelete}
+                    />
+                )}
             </div>
         </div>
     );

@@ -247,7 +247,7 @@ const AddAProducts = () => {
                                 </span>
                             )}
                             {/* --- --- --- */}
-                            
+
                             {/* Input Product Description */}
                             <label className="label">
                                 <span className="label-text">

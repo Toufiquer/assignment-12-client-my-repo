@@ -116,7 +116,7 @@ const AllUsers = () => {
             {/* End Table */}
             {modal && <ModalUserUpdate u={modal} SetRole={SetRole} />}
             {deleteModal && (
-                <ModalUserDelete u={deleteModal} SetDelete={SetDelete} />
+                <ModalUserDelete data={deleteModal} SetDelete={SetDelete} />
             )}
         </div>
     );

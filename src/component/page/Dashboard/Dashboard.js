@@ -32,7 +32,7 @@ const Dashboard = () => {
                         <li>
                             <Link to="/dashboard">My Profile</Link>
                         </li>
-                        {userRole === "Admin" && (
+                        {userRole === "Client" && (
                             <>
                                 {/* Nav for Client */}
                                 <li>

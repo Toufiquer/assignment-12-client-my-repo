@@ -37,32 +37,45 @@ const MyProfiles = () => {
     }
     return (
         <>
-            <div>
+            <div className="p-4 my-6">
                 <div className="text-center text-4xl my-4">
                     User Information
                 </div>
-                <div className="border p-4 my-6">
-                    <div className="text-left">
-                        <div className="text-2xl">
-                            Name : {userData.name || "N/A"}
+                <div className="grid grid-cols-1 lg:grid-cols-[_1fr,_3fr]">
+                    <div className="border p-2">
+                        <div class="avatar">
+                            <div class="rounded">
+                                <img
+                                    className="w-full h-full"
+                                    src={userData.img}
+                                    alt={userData.name}
+                                />
+                            </div>
                         </div>
-                        <div className="text-2xl">
-                            Email : {userData.email || "N/A"}
-                        </div>
-                        <div className="text-2xl">
-                            Role : {userData.role || "N/A"}
-                        </div>
-                        <div className="text-2xl">
-                            Education : {userData.education || "N/A"}
-                        </div>
-                        <div className="text-2xl">
-                            Location : {userData.location || "N/A"}
-                        </div>
-                        <div className="text-2xl">
-                            Phone Number : {userData.phoneNumber || "N/A"}
-                        </div>
-                        <div className="text-2xl">
-                            LinkedIn id : {userData.linkedInId || "N/A"}
+                    </div>
+                    <div className="border p-2">
+                        <div className="text-left">
+                            <div className="text-2xl">
+                                Name : {userData.name || "N/A"}
+                            </div>
+                            <div className="text-2xl">
+                                Email : {userData.email || "N/A"}
+                            </div>
+                            <div className="text-2xl">
+                                Role : {userData.role || "N/A"}
+                            </div>
+                            <div className="text-2xl">
+                                Education : {userData.education || "N/A"}
+                            </div>
+                            <div className="text-2xl">
+                                Location : {userData.location || "N/A"}
+                            </div>
+                            <div className="text-2xl">
+                                Phone Number : {userData.phoneNumber || "N/A"}
+                            </div>
+                            <div className="text-2xl">
+                                LinkedIn id : {userData.linkedInId || "N/A"}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,7 +89,13 @@ const MyProfiles = () => {
                     Update
                 </label>
             </div>
-            {update && <UpdateProfile profile={update} SetData={SetData} />}
+            {update && (
+                <UpdateProfile
+                    profile={update}
+                    SetData={SetData}
+                    SetLoading={SetLoading}
+                />
+            )}
         </>
     );
 };

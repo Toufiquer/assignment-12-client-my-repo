@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import useFireBase from "../../hooks/useFirebase";
 import Loading from "../../Share/Loading";
 const Purchase = () => {
+    const user = useFireBase();
     const navigate = useNavigate();
     const [product, SetProduct] = useState({});
     const [loading, SetLoading] = useState(false);
@@ -204,7 +206,7 @@ const Purchase = () => {
                                     message: "Provide a valid Email.",
                                 },
                             })}
-                            value={product.email || ""}
+                            value={user?.user?.email || ""}
                             readOnly
                             className="input input-bordered input-accent w-full my-1"
                         />
